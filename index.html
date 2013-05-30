@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML5分享（请使用Chrome）</title>
+</head>
+<body>
+	<header>
+		<h1>HTML5分享</h1>
+	</header>
+	<article>
+		<h3>概念：</h3>
+		<p>　　HTML5是HTML下一个主要的修订版本，现在仍处于发展阶段。目标是取代1999年所制定的HTML 4.01和XHTML 1.0 标准，以期能在互联网应用迅速发展的时候，使网络标准达到符合当代的网络需求。广义论及HTML5时，实际指的是包括HTML、CSS和JavaScript在内的一套技术组合。它希望能够减少浏览器对于需要插件的丰富性网络应用服务（plug-in-based rich internet application，RIA)，并且提供更多能有效增强网络应用的标准集。</p>
+		<p>　　目前Firefox、Google Chrome、Opera、Safari（版本4以上）、Internet Explorer（版本9以上）已支持HTML5技术。</p>
+		<p>　　一个普遍的误解是HTML5能够在网页中提供动画效果，这是不对的。动画效果是由JavaScript和CSS达成的。</p>
+	</article>
+	<article>
+		<h3>与HTML 4的不同之处</h3>
+		<ul>
+			<li>
+				文件类型声明（&lt;!DOCTYPE&gt;）仅有一型：&lt;!DOCTYPE HTML&gt;<br>
+				<code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</code>
+			</li>
+			<li>新的语义标签：HTML 5提供了一些新的元素和属性，反映典型的现代用法网站。其中有些是技术上类似&lt;div&gt;和&lt;span&gt;标签，但有一定含义，例如&lt;nav&gt;（网站导航块）和&lt;footer&gt;。这种标签将有利于搜索引擎的索引整理、小屏幕设备和视障人士使用。同时为其他浏览要素提供了新的功能，通过一个标准接口，如&lt;audio&gt;和&lt;video&gt;标记。
+			</li>
+			<li>删除了一些过时的标签</li>
+			<li><img src="img/layout.jpg" width="800" height="600"/></li>
+		</ul>
+	</article>
+
+	<ol>
+		<li>
+			<h3>原生音频（只支持Ogg Vorbis、MP3、Wav三种格式，不同浏览器支持程度不同）</h3>
+			<audio src="audio.mp3" controls="controls"></audio>
+		</li>
+		<li>
+			<h3>原生视频（只支持Ogg、MPEG 4、WebM三种格式，不同浏览器支持程度不同）</h3>
+			<video src="video.mp4" controls="controls"></video>
+		</li>
+		<li>
+			<form action="">
+				<h3>增强的表单功能</h3>
+				<ul>
+					<li><input type="file" accept="image/png"></li><!--text/html-->
+					<li>url:<input type="url"/>*ff支持</li>
+					<li>email:<input type="email"/>*ff支持</li>
+					<li>search:<input type="search"/></li>
+					<li>date:<input type="date"/></li>
+					<li>month:<input type="month"/></li>
+					<li>week:<input type="week"/></li>
+					<li>datetime-local:<input type="datetime-local"/></li>
+					<li>number:<input type="number"/></li>
+					<li>range:<input type="range"/><input type="range" name="range" min="0" max="10" step="2" value=""></li>
+					<li>color:<input type="color"/></li>
+
+				</ul>
+			</form>
+		</li>
+		<li>
+			<h3>datalist元素</h3>
+			<form action="form.php" method="post">
+			    <input list="cars" name="cars" >
+			    <datalist id="cars">
+			        <option value="Volvo">
+			        <option value="BMW">
+			        <option value="Bugatti">
+			        <option value="Cadillac">
+			        <option value="Chevrolet">
+			        <option value="Chrysler">
+			    </datalist>
+			    <input type="submit" />
+			</form>
+		</li>
+		<li>
+			<h3>websoket-真正的实时Web</h3>
+			<ol>
+				<li>
+					<p>目的：取代轮询和Comet技术</p>
+					<img src="img/websoket_1.jpg"/>
+					<img src="img/websoket_2.jpg"/>
+					<img src="img/websoket_3.jpg"/>
+				</li>
+				<li>一次HTTP握手,即可实现真正的双向通信</li>
+				<li>大并发时传输量的减少</li>
+				<li>缺点是现在规范的支持还不是很完善，浏览器的支持也非常的有限，并且需要服务器进行支持</li>
+			</ol>
+		</li>
+		<li>
+			<h3>离线存储</h3>
+		</li>
+		<li>
+			<h3>摄像头应用</h3>
+			<a href="http://www.pjhome.net/web/gif_maker/" target="_blank">http://www.pjhome.net/web/gif_maker/</a><br>
+			<a href="http://chrome.360.cn/html5_labs/demos/mediacapture/" target="_blank">http://chrome.360.cn/html5_labs/demos/mediacapture/</a>
+     	</li>
+     	<li>
+     		<h3>地理定位</h3>
+     		<a href="http://www.w3school.com.cn/tiy/t.asp?f=html5_geolocation_map_script" target="_blank">http://www.w3school.com.cn/tiy/t.asp?f=html5_geolocation_map_script</a>
+     	</li>
+     	<li>
+     		<h3>canvas动画</h3>
+     		<a href="http://namepk.sinaapp.com/demo/se.html" target="_blank">http://namepk.sinaapp.com/demo/se.html</a>
+     		<a href="http://gyu.que.jp/jscloth/" target="_blank">http://gyu.que.jp/jscloth/</a>
+     	</li>
+	</ol>
+</body>
+</html>
