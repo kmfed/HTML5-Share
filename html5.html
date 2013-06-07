@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>解密HTML5</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+		<style>
+			.reveal h1{ margin-bottom: 50px;}
+			.reveal p.left{ text-align: left; text-indent: 2em}
+			.reveal .center{ text-align: center}
+			#webgl-iframe {	border: none; width: 100%; height: 352px;}
+			.reveal ul li{ margin-top: 10px;}
+			.reveal abbr{ border: 1px solid #3b91dd; border-radius: 10px; background: #07bbff; padding:0 10px; box-shadow: 0 2px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.5);}
+			#drag-zone, #drop-zone, #drop-data { width: 20%;}
+			#drag-zone { list-style: none; float: left;}
+			#drag-zone li { list-style: none; padding: 10px 0;}
+			#drag-zone li * { border: 4px solid #888; display: block;}
+			#drag-zone .draggable-text { padding: 5px; font-size: 14px;}
+			#drop-zone, #drop-data { padding: 40px; border: 5px solid #888; float: right; height: 240px; overflow: auto; font-size: 18px;}
+			#drop-data { font-family: Monospace; -ms-word-wrap: break-word; word-wrap: break-word;}
+			div.example {
+				display: block;
+				padding: 10px 20px;
+				color: black;
+				background: rgba(255, 255, 255, 0.4);
+				-webkit-border-radius: 8px;
+				-khtml-border-radius: 8px;
+				-moz-border-radius: 8px;
+				border-radius: 8px;
+				margin-bottom: 10px;
+				border: 1px solid rgba(0, 0, 0, 0.2);
+			}
+			#dropzone {
+				height: 150px;
+				line-height: 150px;
+				width: 100%;
+				-webkit-border-radius: 10px;
+				-khtml-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				border: 2px dashed #07bbff;
+			}
+			#dropzone.rounded {
+				-webkit-box-shadow: inset 0px 0px 50px #fff;
+				-moz-box-shadow: inset 0px 0px 50px #fff;
+				-o-box-shadow: inset 0px 0px 50px #fff;
+				box-shadow: inset 0px 0px 50px #fff;
+			}
+			#geo-map { height: 280px;}
+			#speech-input-field,#datalist input {
+				width: 400px;
+				height: 50px;
+				padding: 10px 15px;
+				font-size: 155%;
+				border-radius: 10px;
+				border: 1px solid #ccc;
+				outline: 0;
+				font-size: 1em;
+			}
+			[required] {
+			    border-color: #88a;
+			    -webkit-box-shadow: 0 0 10px rgba(0, 0, 255, 1);
+			}
+			:invalid {
+				border-color: #e88;
+				-webkit-box-shadow: 0 0 10px rgba(255, 0, 0, 1);
+			}
+			.reveal .newFormTypes{
+				font-size:18px;
+			}
+			.reveal .newFormTypes p{
+				height: 1.5em;
+			}
+			.reveal .newFormTypes li{
+				margin-top: 0;
+			}
+			.newFormTypes input{
+				width: 200px;
+				line-height: 1;
+				padding: 5px 10px;
+				border-radius: 10px;
+				border: 1px solid #ccc;
+				outline: 0;
+				font-size: 1em;
+			}
+			.newFormTypes input[type="range"]{
+				padding: 0;
+				background: transparent;
+			}
+			.newFormTypes input[type="color"]{
+				width: 100px;
+			}
+			.newFormTypes input[type="number"]{
+				border-radius: 0;
+				width: 100px;
+			}
+			.newFormTypes input[type="datetime-local"]{
+				width: 220px;
+			}
+			.newFormTypes input[type="date"]{
+				border-radius: 0;
+			}
+			.reveal .fontSmall{ font-size: .6em}
+			.reveal h2.title{
+				display: inline;
+				text-shadow: 9px 9px 9px rgba(64, 64, 64, 1);
+				border-bottom: 5px solid #13daec;
+				padding-bottom: 8px;
+			}
+			#canvas-example {
+				width: 600px;
+				height: 505px;
+			}
+		</style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1 class="topic">解密HTML5</h1>
+					<h4>HTML新特性演示</h4>
+					<p class="center">
+						<small>Created by <a href="http://weibo.com/xiaohai2013" target="_blank">小孩-_-</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>前言</h2>
+					<p class="left">本次分享只列举了一部分比较直观的特性，主要面对非前端开发人员。</p>
+					<p class="left">所以，不要以为html5仅仅如此~</p>
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<section>
+					<h2>什么是HTML5？</h2>
+					<p class="fragment">HTML5 ~= <abbr>HTML</abbr> + <abbr>CSS</abbr> + <abbr>JS</abbr></p>
+				</section>
+				<section>
+					<ul>
+						<li class="left">HTML5是HTML下一个主要的修订版本，现在仍处于发展阶段。</li>
+						<li class="left fragment">它希望能够减少浏览器对于需要插件的丰富性网络应用服务（plug-in-based rich internet application，RIA)，并且提供更多能有效增强网络应用的标准集。</li>
+						<li class="left fragment">目前Firefox、Google Chrome、Opera、Safari（版本4以上）、Internet Explorer（版本9以上）已支持HTML5技术。</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 class="title">新标签</h2>
+				</section>
+
+				<section>
+					<img src="img/layout.jpg"/>
+				</section>
+
+				<section data-state="audio">
+					<h2>音频</h2>
+					<p>&lt;audio src="audio.mp3" controls="controls"&gt;&lt;/audio&gt;</p>
+					<p><audio id="audio" _src="audio.mp3" src="" controls="controls" width="300"></audio></p>
+					<ul class="fontSmall">
+						<li>当前只支持Ogg Vorbis、MP3、Wav三种格式</li>
+						<li>不同浏览器支持程度不同</li>
+					</ul>
+				</section>
+
+				<section data-state="video">
+					<h2>视频</h2>
+					<p>&lt;video src="video.mp4" controls="controls"&gt;&lt;/video&gt;</p>
+					<p><video id="video" _src="video.mp4" src="" controls="controls"></video></p>
+					<ul class="fontSmall">
+						<li>当前只支持Ogg、MPEG 4、WebM三种格式</li>
+						<li>不同浏览器支持程度不同</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Markup for applications(1)</h2>
+					<pre><code data-trim contenteditable>
+						<meter value="91" min="0" max="100" low="40" high="90" optimum="100"><span class="pln">A+</span></meter>
+					</code></pre>
+					<p><meter value="91" min="0" max="100" low="40" high="90" optimum="100"><span class="pln">A+</span></meter></p>
+					<pre><code data-trim contenteditable>
+						<progress><span class="pln">working...</span></progress>
+					</code></pre>
+					<p><progress><span class="pln">working...</span></progress></p>
+					<pre><code data-trim contenteditable>
+						<progress value="75" max="100"><span class="pln">3/4 complete</span></progress>
+					</code></pre>
+					<p><progress value="75" max="100"><span class="pln">3/4 complete</span></progress></p>
+				</section>
+
+				<section>
+					<h2>Markup for applications(2)</h2>
+					<pre><code data-trim contenteditable>
+<form action="form.php" method="post">
+<input list="cars" name="cars" >
+<datalist id="cars">
+    <option value="Volvo">
+    <option value="BMW">
+    <option value="Bugatti">
+    <option value="Cadillac">
+    <option value="Chevrolet">
+    <option value="Chrysler">
+</datalist>
+<input type="submit" />
+</form>
+					</code></pre>
+					<form id="datalist" action="form.php" method="post">
+					    <input list="cars" name="cars" >
+					    <datalist id="cars">
+					        <option value="Volvo">
+					        <option value="BMW">
+					        <option value="Bugatti">
+					        <option value="Cadillac">
+					        <option value="Chevrolet">
+					        <option value="Chrysler">
+					    </datalist>
+					</form>
+				</section>
+
+				<section>
+					<h2 class="title">新属性</h2>
+				</section>
+
+				<section>					
+					<section>
+						<h2>New form types</h2>
+						<ul class="newFormTypes">
+							<li><p>&lt;input type="text" required/&gt;</p><input type="text" required/></li>
+							<li><p>&lt;input type="url"/&gt;</p><input type="url"/></li>
+							<li><p>&lt;input type="email"/&gt;</p><input type="email"/></li>
+							<li><p>&lt;input type="search" results="10" placeholder="Search..."/&gt;</p><input type="search" results="10" placeholder="Search..."/></li>
+							<li><p>&lt;input type="date" min="2010-08-14" max="2015-08-14"/&gt;</p><input type="date" min="2010-08-14" max="2015-08-14"/></li>
+							<li><p>&lt;input type="number" step="1" min="-5" max="10"/&gt;</p><input type="number" step="1" min="-5" max="10"/></li>
+							<li><p>&lt;input type="range" name="range" min="0" max="10" step="2"/&gt;</p><input type="range" name="range" min="0" max="10" step="2"></li>
+							<li><p>&lt;input type="color"&gt;</p><input type="color"/></li>
+						</ul>
+					</section>
+					<section>
+						<pre><code data-trim contenteditable>
+<style>
+  [required] {
+    border-color: #88a;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+  }
+  :invalid {
+    border-color: #e88;
+    -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+  }
+</style>
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Form field types on mobile</h2>
+						<p>type="text"</p>
+						<p><a href="#" class="image navigate-down"><img src="img/android-form-text.png"></a></p>
+						<p><small>Android Device</small></p>
+					</section>
+					<section>
+						<p>type="number"</p>
+						<p><a href="#" class="image navigate-down"><img src="img/android-form-number.png"></a></p>
+						<p><small>Android Device</small></p>
+					</section>
+					<section>
+						<p>type="email"</p>
+						<p><a href="#" class="image navigate-down"><img src="img/iphone-form-email.png"></a></p>
+						<p><small>iPhone Device</small></p>
+					</section>
+					<section>
+						<p>type="tel"</p>
+						<p><a href="#" class="image navigate-next"><img src="img/iphone-form-tel.png"></a></p>
+						<p><small>iPhone Device</small></p>
+					</section>					
+				</section>
+
+				<section>
+					<h2 class="title">一些牛X的功能</h2>
+				</section>
+
+				<section>
+					<h2>Native Drag & Drop</h2>
+					<ol id="drag-zone">
+		              <li><img src="img/avatar.jpg" draggable="" class="copy"></li>
+		              <li><span class="draggable-text" draggable="">Select text and drag (original text will be dropped)</span></li>
+		              <li><span class="draggable-text" draggable="">Select text and drag (dragged text data will be altered from original)</span></li>
+		            </ol>
+		            <div id="drop-data">Source Data</div>
+		            <div id="drop-zone">Drop Area</div>
+					<script defer>
+			            (function() {
+			              var dragZone = document.querySelector('#drag-zone');
+			              var dropZone = document.querySelector('#drop-zone');
+			              dragZone.addEventListener('dragstart', function(event) {
+			                if (event.target.className) { // img case
+			                  event.dataTransfer.effectAllowed = event.target.className;
+			                  event.target.style.border = "4px solid #cc3300";
+			                }
+			                else { // text case
+			                  if (event.target.parentNode.className == 'overwrite') {
+			                    event.dataTransfer.setData("text", "<strong>Overwritten Content</strong>");
+			                  }
+			                  event.target.parentNode.style.border = "4px solid #cc3300";
+			                }
+			                return true;
+			              }, true);
+			              dragZone.addEventListener('dragend', function(event) {
+			                if (event.target.className) { // img case
+			                  event.target.style.border = "4px solid #888";
+			                }
+			                else { // text case
+			                  event.target.parentNode.style.border = "4px solid #888";
+			                }
+			                return true;
+			              }, true);
+			              dropZone.addEventListener('dragenter', function(event) {
+			                if (event.preventDefault) event.preventDefault();
+			                event.dataTransfer.dropEffect = 'copy';
+			                this.className = 'hovering';
+			                return false;
+			              }, false);
+			              dropZone.addEventListener('dragover', function(event) {
+			                if (event.preventDefault) event.preventDefault(); // allows us to drop
+			                event.dataTransfer.dropEffect = 'copy';
+			                return false;
+			              }, false);
+			              dropZone.addEventListener('dragleave', function(event) {
+			                if (event.preventDefault) event.preventDefault(); // allows us to drop
+			                this.className = '';
+			                return false;
+			              }, false);
+			              dropZone.addEventListener('drop', function(event) {
+			                if (event.preventDefault) event.preventDefault();
+			                var imgPassed = null;
+			                var dropdata = document.querySelector('#drop-data');
+			                var types = event.dataTransfer.types;
+			                document.querySelector('#drop-data').textContent = '';
+			                this.innerHTML = '';
+			                for (var i = 0; i < types.length; i++) {
+			                  if (types[i] == 'Files') {
+			                    var files = event.dataTransfer.files;
+			                    for (var j = 0; j < files.length; j++) {
+			                      dropdata.textContent += 'File Name: '+files[j].fileName;
+			                      dropdata.textContent += 'File Size: '+files[j].fileSize;
+			                    }
+			                  }
+			                  else {
+			                    if (typeof event.dataTransfer.getData(types[i]) !== 'undefined') {
+			                      dropdata.innerHTML += '<p><em class="datatypes">'+types[i]+'</em>: <br />'+event.dataTransfer.getData(types[i]).replace(/</g, '&lt;') + '</p>';
+			                    }
+			                  }
+
+			                  if (types[i] == 'text/uri-list') {
+			                    imgPassed = event.dataTransfer.getData('text/uri-list');
+			                  }
+			                }
+			                if (imgPassed) {
+			                  var cEl = document.createElement('canvas');
+			                  cEl.width = 200;
+			                  cEl.height = 100;
+			                  var ctx = cEl.getContext('2d');
+			                  var img_buffer = document.createElement('img');
+			                  img_buffer.src = imgPassed;
+			                  img_buffer.style.display = 'none';
+			                  document.body.appendChild(img_buffer); // this line only needed in safari
+			                  img_buffer.onload = function() { ctx.drawImage(img_buffer,0,0,100,100); }
+			                  this.appendChild(cEl);
+			                } else {
+			                  if (event.dataTransfer.getData('text')) {
+			                    this.innerHTML = event.dataTransfer.getData('text');
+			                  }
+			                  else if (event.dataTransfer.getData('text/plain')) {
+			                    this.innerHTML = event.dataTransfer.getData('text/plain');
+			                  }
+			                }
+			                return false;
+			              }, false);
+			            })();
+			            </script>
+				</section>
+
+				<section>
+					<h2>Desktop Drag-In(File API)</h2>
+					<div class="example">
+		              <div id="dropzone" class="vbox boxcenter center">
+		                Drop in images from your desktop
+		              </div>
+		            </div>
+		            <div id="dnd-thumbnails" class="center"></div>
+		            <script src="js/dnd-lib.js" defer></script>
+		            <script>
+		              window.addEventListener('load', function(e) {
+		                var dndc = new DNDFileController('dropzone', 'dnd-thumbnails');
+		              }, false);
+		            </script>
+				</section>
+
+				<section>
+					<h2>Desktop Drag-Out</h2>
+					<div class="example">
+		              Drag each of these files onto your desktop:
+		              <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/intl/en/landing/chrome/cadie/glasses.pdf" class="dragout" data-downloadurl="application/pdf:Chrome3DGlasses.pdf:http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/intl/en/landing/chrome/cadie/glasses.pdf" draggable="true">.pdf file</a>
+		              <a href="src/star.mp3" class="dragout" data-downloadurl="audio/mpeg:star.mp3:http://slides.html5rocks.com/src/star.mp3" draggable="true">.mp3 file</a>
+		            </div>
+		            <p class="center" style="font-size:90%">( this feature is only available in Google Chrome )</p>
+		            <script defer>
+		              (function() {
+		                var files = document.querySelectorAll('.dragout');
+		                for (var i = 0, file; file = files[i]; ++i) {
+		                  file.setAttribute('draggable', 'true'); // Don't really need, but good practice.
+		                  file.addEventListener('dragstart', function(evt) {
+		                    evt.dataTransfer.setData('DownloadURL', this.getAttribute('data-downloadurl'));
+		                  }, false);
+		                }
+		              })();
+		            </script>
+				</section>
+
+				<section>
+					<h2>Offline / Storage</h2>
+					<ol>
+						<li>离线浏览 - 用户可在离线时浏览您的完整网站</li>
+						<li>速度 - 缓存资源为本地资源，因此加载速度较快。</li>
+						<li>服务器负载更少 - 浏览器只会从发生了更改的服务器下载资源。</li>
+					</ol>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>websoket-真正的实时Web</h2>
+						<ol>
+							<li>目的：取代轮询和Comet技术</li>
+							<li>一次HTTP握手,即可实现真正的双向通信</li>
+							<li>大并发时传输量的减少</li>
+							<li>缺点是现在规范的支持还不是很完善，浏览器的支持也非常的有限，并且需要服务器进行支持</li>
+							<li>典型案例：聊天室</li>
+						</ol>
+					</section>
+					<section>
+						<h2>Ajax</h2>
+						<p>
+							<a href="#" class="image navigate-down">
+								<img src="img/websoket_1.jpg"/>
+							</a>
+						</p>
+					</section>
+					<section>
+						<h2>Comet</h2>
+						<p>
+							<a href="#" class="image navigate-down">
+								<img src="img/websoket_2.jpg"/>
+							</a>
+						</p>
+					</section>
+					<section>
+						<h2>websoket</h2>
+						<p>
+							<a href="#" class="image navigate-next">
+								<img src="img/websoket_3.jpg"/>
+							</a>
+						</p>
+					</section>
+				</section>
+				
+				<section>
+					<h2>Device Orientation</h2>
+					<p>&ltinput type="text" x-webkit-speech/&gt</p>					
+					</code>
+					<p><input id="speech-input-field" type="text" x-webkit-speech /></p>
+				</section>
+
+				<section>
+					<h2>webcam</h2>
+					<a href="http://www.pjhome.net/web/gif_maker/" target="_blank">http://www.pjhome.net/web/gif_maker/</a>
+					<a href="http://chrome.360.cn/html5_labs/demos/mediacapture/" target="_blank">http://chrome.360.cn/html5_labs/demos/mediacapture/</a>
+				</section>
+				
+				<section>
+					<h2>Geolocation</h2>
+					<button id="see-position">Show Position</button>
+					<span id="geo-log"></span>
+					<div id="geo-map" class="gmap">
+			            <img src="http://maps.google.com/maps/api/staticmap?center=37.4419,-94.1419&amp;zoom=3&amp;size=680x278&amp;sensor=true">
+			        </div>
+			        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+			        <script defer>
+			          (function() {
+			            var map = null;
+			            var geolog = document.querySelector('#geo-log');
+			            var geoMap = document.querySelector('#geo-map');
+
+			            function showPosition(position) {
+			              geolog.textContent = "You're within " + position.coords.accuracy +
+			                  " meters of (" + position.coords.latitude + ", " +
+			                  position.coords.longitude + ")";
+			              var latLng = new google.maps.LatLng(
+			                  position.coords.latitude, position.coords.longitude);
+			              var marker = new google.maps.Marker({
+			                position: latLng,
+			                map: map
+			              });
+			              map.setCenter(latLng);
+			              map.setZoom(15);
+			            }
+
+			            function handlePositionError(evt) {
+			              geolog.textContent = evt.message;
+			            }
+
+			            function successPositionHandler(evt) {
+			              // Load map if it doesn't already exist and when user clicks the button.
+			              if (!map) {
+			                map = new google.maps.Map(geoMap, {
+			                  zoom: 3,
+			                  center: new google.maps.LatLng(37.4419, -94.1419), // United States
+			                  mapTypeId: google.maps.MapTypeId.ROADMAP
+			                });
+			                map.getDiv().style.border =  '1px solid #ccc';
+			              }
+
+			              if (navigator.geolocation) {
+			                geolog.style.visibility = 'visible';
+			                geolog.textContent = 'Looking for location...';
+			                navigator.geolocation.getCurrentPosition(showPosition, handlePositionError);
+			                // Also monitor position as it changes.
+			                //navigator.geolocation.watchPosition(showPosition, handlePositionError);
+			              } else {
+			                geolog.textContent = 'Oops! Your browser does not support geolocation.';
+			              }
+			            }
+
+			            document.querySelector('#see-position').addEventListener('click', successPositionHandler, false);
+			            geoMap.addEventListener('click', successPositionHandler, false);
+			          })();
+			          </script>
+			          <span class="counter"></span>
+				</section>
+				
+				<section>
+					<h2>Device Orientation</h2>
+					<p class="left">获取手持装置的方向,	请用手机访问以下链接查看示例：</p>
+					<p><a href="http://slides.html5rocks.com/#slide-orientation" target="_blank">http://slides.html5rocks.com/#slide-orientation</a></p>
+					<p><img src="img/device-orientation.jpg"></p>
+				</section>
+
+				<section>
+					<h2>SVG example</h2>
+		            <div id="svg-example"><object type="image/svg+xml" style="border:none; width:550px; height:540px; background: white;" data="img/famoustiger.svg"></object></div>
+		          <script defer>
+		            document.querySelector('#svg-example').innerHTML = '<object type="image/svg+xml" style="border:none; width:550px; height:540px; background: white;" data="img/famoustiger.svg"></object>';
+		          </script>
+				</section>
+				
+				<section data-state="photo">
+					<h2>Canvas example</h2>
+					<iframe id="canvas-example" _src="demo/Canvas Photo Demo.htm" scrolling="no" src="demo/Canvas Photo Demo.htm"></iframe>
+				</section>
+
+				<section data-state="webgl">
+					<h2>Canvas 3D (WebGL)</h2>
+					<iframe id="webgl-iframe" scrolling="no" _src="demo/San Angeles Observation.htm" src=""></iframe>
+				</section>
+
+				<section>
+					<h2>总结</h2>
+					<ol>
+						<li class="fragment">HTML5很强大</li>
+						<li class="fragment">标准在2020年才修订完成，但是风骚的码农们已经上路</li>
+						<li class="fragment">当前各浏览器间的标准不统一，但前途是光明的</li>
+						<li class="fragment">在移动端大有可为</li>
+						<li class="fragment">Google是个好公司，Chrome是个好浏览器</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>参考资料</h2>
+					<p><a href="https://zh.wikipedia.org/zh-cn/HTML5" target="_blank">https://zh.wikipedia.org/zh-cn/HTML5</a></p>
+					<p><a href="http://slides.html5rocks.com/#landing-slide" target="_blank">http://slides.html5rocks.com/#landing-slide</a></p>
+				</section>
+
+				<section>
+					<h2>本ppt使用reveal.js插件</h2>
+					<ul>
+						<li><a href="http://slid.es">Try the online editor</a></li>
+						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+					<h3>Thanks!</h3>
+				</section>
+
+			</div>
+
+		</div>
+		
+		<script src="js/jquery-1.8.2.min.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			$(function(){
+				// Full list of configuration options available here:
+				// https://github.com/hakimel/reveal.js#configuration
+				Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+					center: true,
+
+					theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+					transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+					// Optional libraries used to extend on reveal.js
+					dependencies: [
+						{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+						{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+						{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+						{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+						{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+						{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+						// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+						// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+					]
+				});
+				
+				Reveal.addEventListener( 'webgl', function() {
+					var iframe = $('#webgl-iframe');
+					iframe.attr('src', iframe.attr('_src'));
+				});
+
+				Reveal.addEventListener( 'photo', function() {
+					var photo = $('#canvas-example');
+					photo.attr('src', photo.attr('_src'));
+				});
+
+				Reveal.addEventListener( 'audio', function() {
+					var audio = $('#audio');
+					audio.attr('src', audio.attr('_src'));
+				});
+
+				Reveal.addEventListener( 'video', function() {
+					var video = $('#video');
+					video.attr('src', video.attr('_src'));
+				});
+			})		
+		</script>
+
+	</body>
+</html>

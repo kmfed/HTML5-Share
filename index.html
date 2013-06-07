@@ -102,6 +102,23 @@
      		<a href="http://namepk.sinaapp.com/demo/se.html" target="_blank">http://namepk.sinaapp.com/demo/se.html</a>
      		<a href="http://gyu.que.jp/jscloth/" target="_blank">http://gyu.que.jp/jscloth/</a>
      	</li>
+     	<li>
+     		<h3>Desktop Drag-In (File API)</h3>
+     		<div id="dropzone" class="vbox boxcenter center"> Drop in images from your desktop </div>
+     		<div id="dnd-thumbnails" class="center"><img src=""/></div>
+     	</li>
 	</ol>
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('body').on('drop', '#dropzone', function(e) {
+				var reader = new FileReader();
+				reader.onload = function(evt) {
+					$('#dnd-thumbnails img').attr('src') = evt.target.result;
+				};
+				reader.readAsDataURL(e.dataTransfer.files[0]);
+			}, false);
+		})
+	</script>
 </body>
 </html>
